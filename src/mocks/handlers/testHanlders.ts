@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
-
+import { commonQuestions } from "../fixtures/common_question";
 export const testHandlers = [
-  http.get("/no", () => {
-    return HttpResponse.json({ id: "abc-123" });
+  http.get("/api/question/common", () => {
+    return HttpResponse.json(commonQuestions);
   }),
 ];
