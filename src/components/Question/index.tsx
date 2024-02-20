@@ -1,12 +1,5 @@
 import { FormData } from "../../types/questions";
-import {
-  INPUT_TEXT,
-  INPUT_NUMBER,
-  INPUT_CHECKBOX,
-  INPUT_RADIO,
-  INPUT_RADIO_NUMBER,
-  INPUT_RADIO_WITH_INPUT,
-} from "../../constants/question";
+
 import TextInput from "../ui/TextInput";
 import NumberInput from "../ui/NumberInput";
 import Button from "../ui/Button";
