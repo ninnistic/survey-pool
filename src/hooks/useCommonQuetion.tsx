@@ -6,7 +6,8 @@ export const useCommonQuestion = () => {
   const [commmonQuestionList, setCommmonQuestionList] = useState<FormData[]>(
     []
   );
-  const [escapeValidate, setEscapeValidate] = useState<EscapeValidateRule>();
+  const [commonEscapeValidate, setCommonEscapeValidate] =
+    useState<EscapeValidateRule>();
 
   const fetchQuestionList = async () => {
     const response = await fetch(`/api/question/common`);
@@ -14,12 +15,12 @@ export const useCommonQuestion = () => {
     const forms = initialData.data.forms;
     const escapeValidate = initialData.data.escapeValidate;
     setCommmonQuestionList(forms);
-    setEscapeValidate(escapeValidate);
+    setCommonEscapeValidate(escapeValidate);
   };
 
   useEffect(() => {
     fetchQuestionList();
   }, []);
 
-  return { commmonQuestionList, escapeValidate };
+  return { commmonQuestionList, commonEscapeValidate };
 };

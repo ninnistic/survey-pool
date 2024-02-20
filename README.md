@@ -48,13 +48,13 @@
 
 - [ ] 입출력 관련
 
-  - [ ] get요청으로 받아온 data에 의해서, 순서대로 forms를 보여주어야 한다.
-  - [ ] 질문을 보여주고, 답을 입력할 수 있는 input이 제시된다.
+  - [x] get요청으로 받아온 data에 의해서, 순서대로 forms를 보여주어야 한다.
+  - [x] 질문을 보여주고, 답을 입력할 수 있는 input이 제시된다.
   - [ ] 사용자가 잘못 된 입력값을 작성하거나, 입력을 하지 않았을 경우 에러메세지를 보여주고 다시 입력할 수 있게 한다.
 
 ### phase 1 - 구현 계획
 
-- [ ] `data.forms.type`에 맞춰 해당하는 컴포넌트를 렌더한다.
+- [x] `data.forms.type`에 맞춰 해당하는 컴포넌트를 렌더한다.
 - [ ] `data.escapeValidate.name`와 `data.forms.name`이 동일할 경우, `data.forms.validate.target`을 비교하여, 유효성검증을 한다.
 
 **예외사항**
