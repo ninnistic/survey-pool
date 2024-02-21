@@ -13,7 +13,7 @@ export default function Question({ formData }: QuestionProps) {
 
   const INPUT = {
     text: <TextInput placeholder={placeholder} />,
-    number: <NumberInput />,
+    number: <NumberInput placeholder={placeholder} />,
     radio: <RadioInput />,
     checkbox: <CheckboxInput />,
     radioNumber: <RadioNumberInput />,
