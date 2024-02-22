@@ -1,5 +1,5 @@
 import { PlaceholderType } from "../../../types/questions";
-
+import TextInput from "../TextInput";
 import LabeledRadioButton from "../LabeledRadioButton";
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,8 @@ export default function RadioWithInput({
   name,
 }: RadioWithInputProps) {
   const [value, setValue] = useState<string | undefined>();
-  // const [inputDisplay, setInputDisplay] = useState(false);
+  const [inputDisplay, setInputDisplay] = useState(false);
+
   // to find initially checked entry
   useEffect(() => {
     if (typeof placeholder !== "object") {
@@ -23,10 +24,6 @@ export default function RadioWithInput({
   }
 
   const buttons = placeholder.map((entry, index) => {
-    // 만약 "기타 "버튼을 누르면 TextInput 이 display 되어야 한다.
-    // 따라서 onClick 이벤트를 추가하여, "기타" 버튼을 누르면 TextInput 이 대신 display 되도록 한다.
-    // 그리고 다른 radio 버튼들을 누른다면 TextInput은 사라지고 labeledRadioButton이 display 되도록 한다.
-
     return (
       <>
         <LabeledRadioButton
@@ -36,11 +33,25 @@ export default function RadioWithInput({
           label={entry.label}
           checked={entry.value === value}
           onChange={() => setValue(entry.value)}
+          onClick={
+            entry.label === "기타"
+              ? () => setInputDisplay(true)
+              : () => setInputDisplay(false)
+          }
         />
       </>
     );
   });
-  return <>{buttons}</>;
+
+  const inputComponent = inputDisplay && (
+    <TextInput placeholder="" name={name} />
+  );
+  return (
+    <>
+      {buttons}
+      {inputComponent}
+    </>
+  );
 }
 type RadioWithInputProps = {
   name: string;
