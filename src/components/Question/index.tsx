@@ -12,18 +12,21 @@ export default function Question({ formData }: QuestionProps) {
   console.log(typeof placeholder);
 
   const INPUT = {
-    text: <TextInput placeholder={placeholder} />,
-    number: <NumberInput placeholder={placeholder} />,
-    radio: <RadioInput />,
-    checkbox: <CheckboxInput />,
-    radioNumber: <RadioNumberInput />,
-    radioWithInput: <RadioInput />,
+    // text: <TextInput placeholder={placeholder} />,
+    text: TextInput,
+    number: NumberInput,
+    radio: RadioInput,
+    checkbox: CheckboxInput,
+    radioNumber: RadioNumberInput,
+    radioWithInput: RadioInput,
   };
+  // dynamically selected by string type
+  const InputComponent = INPUT[type];
 
   return (
     <div>
       <h2>{question}</h2>
-      {INPUT[type]}
+      {InputComponent && <InputComponent placeholder={placeholder} />}
       <Button type="submit">Next</Button>
     </div>
   );
