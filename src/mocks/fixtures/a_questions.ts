@@ -101,6 +101,31 @@ export const aQuestions = {
           },
         ],
       },
+      {
+        name: "type",
+        question: "무알콜 맥주를 드셔본적 있나요?",
+        required: true,
+        type: "radio",
+        placeholder: [
+          {
+            label: "네",
+            value: "yes",
+            checked: false,
+          },
+          {
+            label: "아니오",
+            value: "no",
+            checked: false,
+          },
+        ],
+        validate: [
+          {
+            type: "minMaxLength",
+            target: [1, "-"],
+            validateText: "반드시 한 개는 선택해야 합니다.",
+          },
+        ],
+      },
     ],
     escapeValidate: [],
   },

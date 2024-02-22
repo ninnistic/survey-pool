@@ -7,9 +7,9 @@ export type InputType =
   | "radioWithInput";
 
 export type PlaceholderType =
-  | string
   | number
   | boolean
+  | string
   | { label: string; value: string; checked: boolean }[];
 
 export type ValidateRule = {
