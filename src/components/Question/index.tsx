@@ -11,6 +11,7 @@ export default function Question({ formData }: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name } = formData;
 
+  // TODO: 상수화 고민 필요
   const INPUT = {
     // text: <TextInput placeholder={placeholder} />,
     text: TextInput,
