@@ -3,7 +3,7 @@ import LabeledRadioButton from "../LabeledRadioButton";
 import { useEffect, useState } from "react";
 
 // TODO : sperate the logic as custom hooks
-export default function RadioInput({ placeholder }: RadioInputProps) {
+export default function RadioInput({ placeholder, name }: RadioInputProps) {
   const [value, setValue] = useState<string | undefined>();
 
   // to find initially checked entry
@@ -23,6 +23,7 @@ export default function RadioInput({ placeholder }: RadioInputProps) {
     return (
       <LabeledRadioButton
         key={index}
+        name={name}
         value={entry.value}
         label={entry.label}
         checked={entry.value === value}
@@ -33,5 +34,6 @@ export default function RadioInput({ placeholder }: RadioInputProps) {
   return <>{buttons}</>;
 }
 type RadioInputProps = {
+  name: string;
   placeholder: PlaceholderType;
 };

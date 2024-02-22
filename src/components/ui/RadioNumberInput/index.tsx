@@ -4,6 +4,7 @@ import LabeledRadioButton from "../LabeledRadioButton";
 
 export default function RadioNumberInput({
   placeholder,
+  name,
 }: RadioNumberInputProps) {
   const [value, setValue] = useState(
     typeof placeholder === "number" ? placeholder : 0
@@ -14,6 +15,7 @@ export default function RadioNumberInput({
     .fill(0)
     .map((_, i) => (
       <LabeledRadioButton
+        name={name}
         key={i}
         value={i + 1}
         label={`${i + 1}`}
@@ -37,5 +39,6 @@ export default function RadioNumberInput({
 }
 
 type RadioNumberInputProps = {
+  name: string;
   placeholder: PlaceholderType;
 };

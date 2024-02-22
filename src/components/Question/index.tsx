@@ -6,10 +6,10 @@ import Button from "../ui/Button";
 import RadioInput from "../ui/RadioInput";
 import CheckboxInput from "../ui/CheckboxInput";
 import RadioNumberInput from "../ui/RadioNumberInput";
+import RadioWithInput from "../ui/RadioWithInput";
 export default function Question({ formData }: QuestionProps) {
   // based off the type of question, return the appropriate input component
-  const { type, question, placeholder } = formData;
-  console.log(typeof placeholder);
+  const { question, type, placeholder, name } = formData;
 
   const INPUT = {
     // text: <TextInput placeholder={placeholder} />,
@@ -18,7 +18,7 @@ export default function Question({ formData }: QuestionProps) {
     radio: RadioInput,
     checkbox: CheckboxInput,
     radioNumber: RadioNumberInput,
-    radioWithInput: RadioInput,
+    radioWithInput: RadioWithInput,
   };
   // dynamically selected by string type
   const InputComponent = INPUT[type];
@@ -26,7 +26,9 @@ export default function Question({ formData }: QuestionProps) {
   return (
     <div>
       <h2>{question}</h2>
-      {InputComponent && <InputComponent placeholder={placeholder} />}
+      {InputComponent && (
+        <InputComponent {...formData} placeholder={placeholder} name={name} />
+      )}
       <Button type="submit">Next</Button>
     </div>
   );
