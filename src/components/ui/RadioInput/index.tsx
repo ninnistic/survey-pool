@@ -1,17 +1,37 @@
-export default function RadioInput() {
-  return null;
-  // if (typeof placeholder === "object") {
-  //   console.log(placeholder);
-  //   return (
-  //     <>
-  //       <CustomRadioButton value="1" label="1" />
-  //       <CustomRadioButton value="2" label="2" />
-  //       <CustomRadioButton value="3" label="3" />
-  //       <CustomRadioButton value="4" label="4" />
-  //       <CustomRadioButton value="5" label="5" />
-  //       <CustomRadioButton value="6" label="6" />
-  //       <CustomRadioButton value="7" label="7" />
-  //     </>
-  //   );
-  // }
+import { PlaceholderType } from "../../../types/questions";
+import LabeledRadioButton from "../LabeledRadioButton";
+import { useEffect, useState } from "react";
+
+// TODO : sperate the logic as custom hooks
+export default function RadioInput({ placeholder }: RadioInputProps) {
+  const [value, setValue] = useState<string | undefined>();
+
+  // to find initially checked entry
+  useEffect(() => {
+    if (typeof placeholder !== "object") {
+      return;
+    }
+    const value = placeholder.find((entry) => entry.checked)?.value;
+    setValue(value);
+  }, [placeholder]);
+
+  if (typeof placeholder !== "object") {
+    return null;
+  }
+
+  const buttons = placeholder.map((entry, index) => {
+    return (
+      <LabeledRadioButton
+        key={index}
+        value={entry.value}
+        label={entry.label}
+        checked={entry.value === value}
+        onChange={() => setValue(entry.value)}
+      />
+    );
+  });
+  return <>{buttons}</>;
 }
+type RadioInputProps = {
+  placeholder: PlaceholderType;
+};
