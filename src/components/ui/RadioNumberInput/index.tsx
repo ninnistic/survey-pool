@@ -12,7 +12,7 @@ export default function RadioNumberInput({
   const buttons = Array(7)
     .fill(0)
     .map((_, i) => (
-      <CustomRadioButton
+      <LabeledRadioButton
         key={i}
         value={i + 1}
         label={`${i + 1}`}
@@ -39,7 +39,10 @@ type RadioNumberInputProps = {
   placeholder: PlaceholderType;
 };
 
-export function CustomRadioButton({ label, ...other }: CustomRadioButtonProps) {
+export function LabeledRadioButton({
+  label,
+  ...other
+}: LabeledRadioButtonProps) {
   const id = useId();
 
   return (
@@ -49,7 +52,7 @@ export function CustomRadioButton({ label, ...other }: CustomRadioButtonProps) {
     </>
   );
 }
-type CustomRadioButtonProps = {
+type LabeledRadioButtonProps = {
   label: string;
   placeholder?: PlaceholderType;
 } & ComponentProps<"input">;
