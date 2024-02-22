@@ -1,5 +1,6 @@
 import { PlaceholderType } from "../../../types/questions";
-import { useId, useState, ComponentProps } from "react";
+import { useState } from "react";
+import LabeledRadioButton from "../LabeledRadioButton";
 
 export default function RadioNumberInput({
   placeholder,
@@ -38,21 +39,3 @@ export default function RadioNumberInput({
 type RadioNumberInputProps = {
   placeholder: PlaceholderType;
 };
-
-export function LabeledRadioButton({
-  label,
-  ...other
-}: LabeledRadioButtonProps) {
-  const id = useId();
-
-  return (
-    <>
-      <input type="radio" name="number" {...other} />
-      <label htmlFor={id}>{label}</label>
-    </>
-  );
-}
-type LabeledRadioButtonProps = {
-  label: string;
-  placeholder?: PlaceholderType;
-} & ComponentProps<"input">;
