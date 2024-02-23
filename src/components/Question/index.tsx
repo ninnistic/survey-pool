@@ -7,11 +7,16 @@ import RadioInput from "../ui/RadioInput";
 import CheckboxInput from "../ui/CheckboxInput";
 import RadioNumberInput from "../ui/RadioNumberInput";
 import RadioWithInput from "../ui/RadioWithInput";
+
+/**
+ *
+ * @param param0 | formData : form에 들어갈 데이터 ( 질문, input의 타입들 )
+ * @returns | 질문과 input을 렌더링
+ */
 export default function Question({ formData }: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name, validate } = formData;
 
-  // TODO: 상수화 고민 필요
   const INPUT = {
     // text: <TextInput placeholder={placeholder} />,
     text: TextInput,
