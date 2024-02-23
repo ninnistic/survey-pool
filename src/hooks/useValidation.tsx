@@ -38,7 +38,11 @@ function validateRule(
       return rule.validateText;
     }
   }
-  if (rule.type === "minMax") {
+  if (rule.type === "pattern" && typeof rule.target === "string") {
+    const pattern = new RegExp(rule.target);
+    if (!pattern.test(value)) {
+      return rule.validateText;
+    }
   }
 
   return null;
