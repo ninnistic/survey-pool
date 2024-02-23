@@ -9,7 +9,7 @@ import RadioNumberInput from "../ui/RadioNumberInput";
 import RadioWithInput from "../ui/RadioWithInput";
 export default function Question({ formData }: QuestionProps) {
   // based off the type of question, return the appropriate input component
-  const { question, type, placeholder, name } = formData;
+  const { question, type, placeholder, name, validate } = formData;
 
   // TODO: 상수화 고민 필요
   const INPUT = {
@@ -28,7 +28,12 @@ export default function Question({ formData }: QuestionProps) {
     <div>
       <h2>{question}</h2>
       {InputComponent && (
-        <InputComponent {...formData} placeholder={placeholder} name={name} />
+        <InputComponent
+          {...formData}
+          placeholder={placeholder}
+          name={name}
+          rules={validate}
+        />
       )}
       <Button type="submit">Next</Button>
     </div>
