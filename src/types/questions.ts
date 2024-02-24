@@ -14,7 +14,7 @@ export type PlaceholderType =
 
 export type ValidateRule = {
   type: "not" | "minMax" | "sameAS" | "pattern" | "minMaxLength";
-  target: number | [number, number | string] | string | `$name`;
+  target: number | ["-" | number, "-" | number] | string | `$name`;
   validateText: string;
 };
 
