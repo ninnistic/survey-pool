@@ -9,8 +9,8 @@ export default function LabeledRadioButton({
 
   return (
     <>
-      <input type="radio" name={name} {...other} />
       <label htmlFor={id}>{label}</label>
+      <input type="radio" name={name} {...other} />
     </>
   );
 }

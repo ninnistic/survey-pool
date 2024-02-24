@@ -44,6 +44,30 @@ function validateRule(
       return rule.validateText;
     }
   }
-
+  if (
+    rule.type === "minMax" &&
+    Array.isArray(rule.target) &&
+    inputType === "number"
+  ) {
+    const [lower, upper] = rule.target;
+    //only max
+    if (lower === "-" && typeof upper === "number") {
+      if (parseInt(value) > upper) {
+        return rule.validateText;
+      }
+    }
+    //only min
+    if (upper === "-" && typeof lower === "number") {
+      if (parseInt(value) < lower) {
+        return rule.validateText;
+      }
+    }
+    //min max both
+    if (typeof lower === "number" && typeof upper === "number") {
+      if (parseInt(value) < lower || parseInt(value) > upper) {
+        return rule.validateText;
+      }
+    }
+  }
   return null;
 }
