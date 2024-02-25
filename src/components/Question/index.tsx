@@ -7,6 +7,7 @@ import RadioInput from "../ui/RadioInput";
 import CheckboxInput from "../ui/CheckboxInput";
 import RadioNumberInput from "../ui/RadioNumberInput";
 import RadioWithInput from "../ui/RadioWithInput";
+import styles from "./Question.module.css";
 
 /**
  *
@@ -30,18 +31,20 @@ export default function Question({ formData }: QuestionProps) {
   const InputComponent = INPUT[type];
 
   return (
-    <div>
-      <h2>{question}</h2>
-      {InputComponent && (
-        <InputComponent
-          {...formData}
-          placeholder={placeholder}
-          name={name}
-          rules={validate}
-        />
-      )}
-      <Button type="submit">Next</Button>
-    </div>
+    <section className={styles.container}>
+      <div className={styles.inner}>
+        <h2>{question}</h2>
+        {InputComponent && (
+          <InputComponent
+            {...formData}
+            placeholder={placeholder}
+            name={name}
+            rules={validate}
+          />
+        )}
+        <Button type="submit">Next</Button>
+      </div>
+    </section>
   );
 }
 

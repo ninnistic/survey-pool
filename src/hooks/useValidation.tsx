@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ValidateRule } from "../types/questions";
 import { InputType } from "../types/questions";
 
