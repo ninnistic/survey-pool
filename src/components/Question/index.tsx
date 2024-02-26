@@ -7,18 +7,19 @@ import RadioInput from "../ui/RadioInput";
 import CheckboxInput from "../ui/CheckboxInput";
 import RadioNumberInput from "../ui/RadioNumberInput";
 import RadioWithInput from "../ui/RadioWithInput";
+import styles from "./Question.module.css";
+import { useFormContext } from "../../context/FormContextProvider";
 
 /**
  *
  * @param param0 | formData : form에 들어갈 데이터 ( 질문, input의 타입들 )
  * @returns | 질문과 input을 렌더링
  */
-export default function Question({ formData }: QuestionProps) {
+export default function Question({ formData, id }: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name, validate } = formData;
-
+  const { handleClickForward } = useFormContext();
   const INPUT = {
-    // text: <TextInput placeholder={placeholder} />,
     text: TextInput,
     number: NumberInput,
     radio: RadioInput,
@@ -30,21 +31,24 @@ export default function Question({ formData }: QuestionProps) {
   const InputComponent = INPUT[type];
 
   return (
-    <div>
-      <h2>{question}</h2>
-      {InputComponent && (
-        <InputComponent
-          {...formData}
-          placeholder={placeholder}
-          name={name}
-          rules={validate}
-        />
-      )}
-      <Button type="submit">Next</Button>
-    </div>
+    <section className={styles.container} id={id}>
+      <div className={styles.inner}>
+        <h2>{question}</h2>
+        {InputComponent && (
+          <InputComponent
+            {...formData}
+            placeholder={placeholder}
+            name={name}
+            rules={validate}
+          />
+        )}
+        <Button onClick={() => handleClickForward()}>Ok</Button>
+      </div>
+    </section>
   );
 }
 
 type QuestionProps = {
   formData: FormData;
+  id: string;
 };
