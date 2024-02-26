@@ -42,7 +42,7 @@ export default function Question({ formData, id }: QuestionProps) {
             rules={validate}
           />
         )}
-        <Button onClick={() => handleClickForward()}>Next</Button>
+        <Button onClick={() => handleClickForward()}>Ok</Button>
       </div>
     </section>
   );

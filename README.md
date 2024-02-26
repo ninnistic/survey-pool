@@ -46,17 +46,34 @@
 
 ### phase 1
 
-- [ ] 입출력 관련
+- [x] 입출력 관련
 
   - [x] get요청으로 받아온 data에 의해서, 순서대로 forms를 보여주어야 한다.
   - [x] 질문을 보여주고, 답을 입력할 수 있는 input이 제시된다.
-  - [ ] 사용자가 잘못 된 입력값을 작성하거나, 입력을 하지 않았을 경우 에러메세지를 보여주고 다시 입력할 수 있게 한다.
+  - [x] 사용자가 잘못 된 입력값을 작성하거나, 입력을 하지 않았을 경우 에러메세지를 보여주고 다시 입력할 수 있게 한다.
 
 ### phase 1 - 구현 계획
 
 - [x] `data.forms.type`에 맞춰 해당하는 컴포넌트를 렌더한다.
-- [ ] `data.escapeValidate.name`와 `data.forms.name`이 동일할 경우, `data.forms.validate.target`을 비교하여, 유효성검증을 한다.
+- [x] `data.escapeValidate.name`와 `data.forms.name`이 동일할 경우, `data.forms.validate.target`을 비교하여, 유효성검증을 한다.
 
-**예외사항**
+### phase 2 - CSS
+
+`<Question />`
+
+- [ ] Next(OK) 버튼을 눌렀을 때 index 를 넘지 않도록 하기
+- [ ] footer를 구현할 때, 위 아래로 가는 버튼 만들기
+- [ ] question 1(첫번째 질문) 에서 back 버튼이 disabled 되도록 하기
+- [ ] 마지막 질문에서 next 버튼이 disabled 되도록 하기
+- [ ] question에서 next 버튼, footer의 next버튼이 value가 입력되지 않거나 유효성 검증을 통과하지 않으면 disabled 되도록 하기
+- [ ] Header는 current question 숫자를 보여주기
+
+## 고려사항
+
+1. 재사용성이 높은 컴포넌트 설계
+2. FormSurvey에서 여러개의 컴포넌트를 보여주는 상황에서 동적 렌더링을 위한 방법 생각하기
+3. ContextAPI를 적절히 활용할 것
+
+- Provider 하위에서 context를 구독하는 모든 컴포넌트들은, 해당 value가 바뀔 때마다 rerendering이 발생하므로 성능 저하를 고려해야 한다.
 
 ## 환경설정
