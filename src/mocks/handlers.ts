@@ -1,4 +1,4 @@
 // handler.ts
-import { testHandlers } from "./handlers/testHanlders";
+import { questionHandlers } from "./handlers/questionHanlders";
 
-export const handlers = [...testHandlers];
+export const handlers = [...questionHandlers];
