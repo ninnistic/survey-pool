@@ -1,6 +1,7 @@
 import "./App.css";
-import { useQuestion } from "./hooks/useQuetion";
+import { useQuestion } from "./hooks/useQuestion";
 import SurveyForm from "./components/SurveyForm";
+import Footer from "./components/Footer";
 
 function App() {
   const COMMON_QUESTION_URL = "api/question/common";
@@ -10,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <SurveyForm questionList={questionList} action="#" />
+      <Footer />
     </div>
   );
 }

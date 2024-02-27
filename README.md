@@ -61,7 +61,7 @@
 
 `<Question />`
 
-- [ ] Next(OK) 버튼을 눌렀을 때 index 를 넘지 않도록 하기
+- [x] Next(OK) 버튼을 눌렀을 때 index 를 넘지 않도록 하기
 - [ ] footer를 구현할 때, 위 아래로 가는 버튼 만들기
 - [ ] question 1(첫번째 질문) 에서 back 버튼이 disabled 되도록 하기
 - [ ] 마지막 질문에서 next 버튼이 disabled 되도록 하기

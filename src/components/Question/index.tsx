@@ -31,7 +31,12 @@ export default function Question({ formData, id }: QuestionProps) {
   };
   // dynamically selected by string type
   const InputComponent = INPUT[type];
-
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (hasNext) {
+      e.preventDefault();
+    }
+    dispatch("next");
+  };
   return (
     <section className={styles.container} id={id}>
       <div className={styles.inner}>
@@ -45,15 +50,7 @@ export default function Question({ formData, id }: QuestionProps) {
             onValidation={(result) => setValidationResult(result)}
           />
         )}
-        <Button
-          onClick={(e) => {
-            if (hasNext) {
-              e.preventDefault();
-            }
-            dispatch("next");
-          }}
-          disabled={validationResult !== null}
-        >
+        <Button onClick={handleClick} disabled={validationResult !== null}>
           {hasNext ? "Next" : "Submit"}
         </Button>
       </div>
