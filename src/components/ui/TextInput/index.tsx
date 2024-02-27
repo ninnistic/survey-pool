@@ -1,5 +1,5 @@
 import InputType from "../../../types/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useValidation from "../../../hooks/useValidation";
 export default function TextInput({
   placeholder,
@@ -9,7 +9,9 @@ export default function TextInput({
 }: TextInputProps) {
   const [value, setValue] = useState<string>("");
   const validationResult = useValidation(rules, "text", value);
-  onValidation?.(validationResult);
+  useEffect(() => {
+    onValidation?.(validationResult);
+  });
   return (
     <>
       <input

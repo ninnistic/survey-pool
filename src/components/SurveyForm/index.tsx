@@ -18,7 +18,7 @@ export default function SurveyForm({
       <ScrollManager />
       <form {...formProps} className={styles.form}>
         {questionList.map((question, index) => {
-          return <Question formData={question} id={`q${index}`} />;
+          return <Question key={index} formData={question} id={`q${index}`} />;
         })}
       </form>
     </FormContextProvider>
