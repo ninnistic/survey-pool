@@ -12,7 +12,7 @@ export const useQuestion = (url: string) => {
     const fetchQuestionList = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(url);
+        const response = await fetch(url, { method: "GET" });
         const initialData = await response.json();
         const forms = initialData.data.forms;
         const escapeValidate = initialData.data.escapeValidate;
@@ -22,8 +22,26 @@ export const useQuestion = (url: string) => {
         setIsLoading(false);
       }
     };
+
     fetchQuestionList();
   }, [url]);
 
-  return { isLoading, questionList, escapeValidateRule };
+  const submitAnswer = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      setIsLoading(false);
+    }
+  };
+
+  return { isLoading, questionList, escapeValidateRule, submitAnswer };
 };
