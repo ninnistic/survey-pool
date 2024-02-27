@@ -5,6 +5,7 @@ type InputType = {
   name: string;
   placeholder: PlaceholderType;
   rules?: ValidateRule[];
+  onValidation?: (result: string | null) => void;
 };
 
 export default InputType;

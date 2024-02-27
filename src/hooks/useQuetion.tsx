@@ -11,6 +11,7 @@ export const useQuestion = (url: string) => {
   useEffect(() => {
     const fetchQuestionList = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(url);
         const initialData = await response.json();
         const forms = initialData.data.forms;

@@ -1,5 +1,5 @@
 import { FormData } from "../../types/questions";
-
+import { useState } from "react";
 import TextInput from "../ui/TextInput";
 import NumberInput from "../ui/NumberInput";
 import Button from "../ui/Button";
@@ -18,7 +18,9 @@ import { useFormContext } from "../../context/FormContextProvider";
 export default function Question({ formData, id }: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name, validate } = formData;
-  const { handleClickForward } = useFormContext();
+  const { state, dispatch } = useFormContext();
+  const { hasNext } = state;
+  const [validationResult, setValidationResult] = useState<string | null>(null);
   const INPUT = {
     text: TextInput,
     number: NumberInput,
@@ -40,9 +42,20 @@ export default function Question({ formData, id }: QuestionProps) {
             placeholder={placeholder}
             name={name}
             rules={validate}
+            onValidation={(result) => setValidationResult(result)}
           />
         )}
-        <Button onClick={() => handleClickForward()}>Ok</Button>
+        <Button
+          onClick={(e) => {
+            if (hasNext) {
+              e.preventDefault();
+            }
+            dispatch("next");
+          }}
+          disabled={validationResult !== null}
+        >
+          {hasNext ? "Next" : "Submit"}
+        </Button>
       </div>
     </section>
   );
