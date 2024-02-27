@@ -5,12 +5,13 @@ export default function TextInput({
   placeholder,
   name,
   rules,
+  onValidation,
 }: TextInputProps) {
   const [value, setValue] = useState<string>("");
   const validationResult = useValidation(rules, "text", value);
+  onValidation?.(validationResult);
   return (
     <>
-      {validationResult && <span>{validationResult}</span>}
       <input
         type="text"
         placeholder={`${placeholder}`}
