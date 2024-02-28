@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { FormData } from "../types/questions";
+import { FormField } from "../types/questions";
 import { EscapeValidateRule } from "../types/questions";
 
 export const useQuestion = (url: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [questionList, setQuestionList] = useState<FormData[]>([]);
+  const [questionList, setQuestionList] = useState<FormField[]>([]);
   const [escapeValidateRule, setEscapeValidateRule] =
     useState<EscapeValidateRule>();
 
@@ -26,15 +26,13 @@ export const useQuestion = (url: string) => {
     fetchQuestionList();
   }, [url]);
 
-  const submitAnswer = async () => {
+  const submitAnswer = async (answers: FormData) => {
     try {
       setIsLoading(true);
-      const response = await fetch(url, {
+      const postURL = url.replace("/question/", "/answers/");
+      const response = await fetch(postURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
+        body: answers,
       });
       const data = await response.json();
       console.log(data);

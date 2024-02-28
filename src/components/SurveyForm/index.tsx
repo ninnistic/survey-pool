@@ -1,22 +1,32 @@
-import { FormData } from "../../types/questions";
+import { FormField } from "../../types/questions";
 import { ComponentProps } from "react";
 import Question from "../Question";
 import styles from "./SurveyForm.module.css";
 import { useFormContext } from "../../context/FormContextProvider";
 import { useEffect } from "react";
 import FormContextProvider from "../../context/FormContextProvider";
+import { useQuestion } from "../../hooks/useQuestion";
+
 export default function SurveyForm({
-  questionList,
+  questionURL,
   ...formProps
 }: SurveyFormProps) {
-  /*아직 fetch 되지 않았을 경우 (0인 경우에 reducer가 동작하지 않으므로) 0보다 작거나 같다면 null을 return 한다. */
+  const { questionList, submitAnswer } = useQuestion(questionURL);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    submitAnswer(formData);
+    console.log("submit", formData);
+  };
 
   if (questionList.length <= 0) return null;
+
   return (
     <FormContextProvider questionCount={questionList.length}>
       {/*ScrollManager은 render은 하지 않되, react의 render tree로써 useEffect를 활용해 mount될 때 역할함 */}
       <ScrollManager />
-      <form {...formProps} className={styles.form}>
+      <form {...formProps} className={styles.form} onSubmit={handleSubmit}>
         {questionList.map((question, index) => {
           return <Question key={index} formData={question} id={`q${index}`} />;
         })}
@@ -37,5 +47,5 @@ function ScrollManager() {
 }
 
 type SurveyFormProps = {
-  questionList: FormData[];
+  questionURL: string;
 } & ComponentProps<"form">;

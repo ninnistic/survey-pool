@@ -1,4 +1,4 @@
-import { FormData } from "../../types/questions";
+import { FormField } from "../../types/questions";
 import { useState } from "react";
 import TextInput from "../ui/TextInput";
 import NumberInput from "../ui/NumberInput";
@@ -59,6 +59,6 @@ export default function Question({ formData, id }: QuestionProps) {
 }
 
 type QuestionProps = {
-  formData: FormData;
+  formData: FormField;
   id: string;
 };
