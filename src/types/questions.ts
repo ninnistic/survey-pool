@@ -18,7 +18,7 @@ export type ValidateRule = {
   validateText: string;
 };
 
-export type FormData = {
+export type FormField = {
   name: string;
   question: string;
   required: boolean;
@@ -37,7 +37,7 @@ export type QuestionsResponse = {
   status: number;
   data: {
     userId?: string; // userId는 typeID가 common인 특수한 경우에만 리턴된다.
-    forms: FormData[];
+    forms: FormField[];
     escapeValidate: EscapeValidateRule[];
   };
 };
