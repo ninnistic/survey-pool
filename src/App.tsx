@@ -1,5 +1,4 @@
 import "./App.css";
-import { useQuestion } from "./hooks/useQuestion";
 import SurveyForm from "./components/SurveyForm";
 import Footer from "./components/Footer";
 

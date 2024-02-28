@@ -1,4 +1,3 @@
-import { FormField } from "../../types/questions";
 import { ComponentProps } from "react";
 import Question from "../Question";
 import styles from "./SurveyForm.module.css";
