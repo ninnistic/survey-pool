@@ -41,7 +41,7 @@ export default function Question({ formData, id }: QuestionProps) {
   return (
     <section className={styles.container} id={id}>
       <div className={styles.inner}>
-        <h2>
+        <h2 className={styles.header}>
           Q{QUESTION_NUMBER}.{question}
         </h2>
         {InputComponent && (

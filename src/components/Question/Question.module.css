@@ -3,15 +3,19 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  background-color: pink;
+
   height: 100vh;
 }
 
 .inner {
+  font-size: 2rem;
   display: flex;
   flex-direction: column;
   width: 80vw;
   max-width: 100%;
-  background-color: yellow;
   align-items: flex-start;
+}
+
+.header {
+  margin: 1rem 0;
 }
