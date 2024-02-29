@@ -1,6 +1,6 @@
-import { PlaceholderType } from "../../../types/questions";
 import { useState } from "react";
 import LabeledRadioButton from "../LabeledRadioButton";
+import InputType from "../../../types/input";
 
 export default function RadioNumberInput({
   placeholder,
@@ -27,7 +27,4 @@ export default function RadioNumberInput({
   return <>{buttons}</>;
 }
 
-type RadioNumberInputProps = {
-  name: string;
-  placeholder: PlaceholderType;
-};
+type RadioNumberInputProps = InputType;
