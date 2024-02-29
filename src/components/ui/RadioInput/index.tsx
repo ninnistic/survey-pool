@@ -2,7 +2,6 @@ import { PlaceholderType } from "../../../types/questions";
 import LabeledRadioButton from "../LabeledRadioButton";
 import { useEffect, useState } from "react";
 
-// TODO : sperate the logic as custom hooks
 export default function RadioInput({ placeholder, name }: RadioInputProps) {
   const [value, setValue] = useState<string | undefined>();
 
@@ -33,6 +32,7 @@ export default function RadioInput({ placeholder, name }: RadioInputProps) {
   });
   return <>{buttons}</>;
 }
+
 type RadioInputProps = {
   name: string;
   placeholder: PlaceholderType;
