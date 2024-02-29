@@ -19,7 +19,8 @@ export default function Question({ formData, id }: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name, validate } = formData;
   const { state, dispatch } = useFormContext();
-  const { hasNext } = state;
+  const { hasNext, tab } = state;
+  const QUESTION_NUMBER = tab + 1;
   const [validationResult, setValidationResult] = useState<string | null>(null);
   const INPUT = {
     text: TextInput,
@@ -40,7 +41,9 @@ export default function Question({ formData, id }: QuestionProps) {
   return (
     <section className={styles.container} id={id}>
       <div className={styles.inner}>
-        <h2>{question}</h2>
+        <h2>
+          Q{QUESTION_NUMBER}.{question}
+        </h2>
         {InputComponent && (
           <InputComponent
             {...formData}
