@@ -5,6 +5,7 @@ import InputType from "../../../types/input";
 export default function RadioNumberInput({
   placeholder,
   name,
+  inputRef,
 }: RadioNumberInputProps) {
   const [value, setValue] = useState(
     typeof placeholder === "number" ? placeholder : 0
@@ -21,6 +22,7 @@ export default function RadioNumberInput({
         label={`${i + 1}`}
         checked={i + 1 === value}
         onChange={() => setValue(i + 1)}
+        ref={inputRef}
       />
     ));
 
