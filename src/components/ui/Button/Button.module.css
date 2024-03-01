@@ -1,0 +1,20 @@
+button {
+  appearance: none;
+}
+
+.base {
+  width: 7.5rem;
+  height: 2.3rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  margin: 2px;
+  align-self: last baseline;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(48, 105, 119);
+  color: rgb(255, 255, 218);
+}
+
+.base:hover {
+  background-color: rgb(25, 89, 129);
+}
