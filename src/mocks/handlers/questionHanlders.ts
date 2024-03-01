@@ -3,10 +3,10 @@ import { commonQuestions } from "../fixtures/common_question";
 import { aQuestions } from "../fixtures/a_questions";
 
 export const questionHandlers = [
-  http.get("/api/question/common", () => {
+  http.get(`/api/question/common`, () => {
     return HttpResponse.json(commonQuestions);
   }),
-  http.get(`api/question/:typeID`, () => {
+  http.get(`/api/question/:typeId`, () => {
     return HttpResponse.json(aQuestions);
   }),
   http.post(`/api/answers/common`, () => {

@@ -6,6 +6,7 @@ type InputType = {
   placeholder: PlaceholderType;
   rules?: ValidateRule[];
   onValidation?: (result: string | null) => void;
+  inputRef?: React.RefObject<HTMLInputElement>;
 };
 
 export default InputType;

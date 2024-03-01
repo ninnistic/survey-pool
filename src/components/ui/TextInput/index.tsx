@@ -7,8 +7,10 @@ export default function TextInput({
   name,
   rules,
   onValidation,
+  inputRef,
 }: TextInputProps) {
   const [value, setValue] = useState<string>("");
+
   const validationResult = useValidation(rules, "text", value);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ export default function TextInput({
         name={name}
         value={value}
         onChange={(event) => setValue(event.target.value)}
+        ref={inputRef}
       />
     </>
   );
