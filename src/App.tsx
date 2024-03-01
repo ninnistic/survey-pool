@@ -15,6 +15,7 @@ function App() {
         path={PATH_NAME.SURVEY}
         element={<SurveyForm questionURL={COMMON_QUESTION_URL} />}
       />
+
       <Route path={PATH_NAME.NO_TARGET} element={<NoTargetPage />} />
       <Route path={PATH_NAME.OUTRO} element={<OutroPage />} />
     </Routes>

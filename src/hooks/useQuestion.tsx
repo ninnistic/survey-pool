@@ -35,7 +35,8 @@ export const useQuestion = (url: string) => {
         body: answers,
       });
       const data = await response.json();
-      console.log(data);
+      //TODO: type 지정하기
+      return data.data.nextTypeId;
     } catch (error) {
       setIsLoading(false);
     }

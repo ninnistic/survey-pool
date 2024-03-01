@@ -1,5 +1,5 @@
 import { FormField } from "../../types/questions";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import TextInput from "../ui/TextInput";
 import NumberInput from "../ui/NumberInput";
 import Button from "../ui/Button";
@@ -15,13 +15,18 @@ import { useFormContext } from "../../context/FormContextProvider";
  * @param param0 | formData : form에 들어갈 데이터 ( 질문, input의 타입들 )
  * @returns | 질문과 input을 렌더링
  */
-export default function Question({ formData, id }: QuestionProps) {
+export default function Question({
+  formData,
+  id,
+  questionNumber,
+}: QuestionProps) {
   // based off the type of question, return the appropriate input component
   const { question, type, placeholder, name, validate } = formData;
   const { state, dispatch } = useFormContext();
   const { hasNext, tab } = state;
-  const QUESTION_NUMBER = tab + 1;
+
   const [validationResult, setValidationResult] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const INPUT = {
     text: TextInput,
     number: NumberInput,
@@ -38,11 +43,18 @@ export default function Question({ formData, id }: QuestionProps) {
     }
     dispatch("next");
   };
+
+  useEffect(() => {
+    if (tab === questionNumber) {
+      inputRef.current?.focus({ preventScroll: true });
+    }
+  }, [questionNumber, tab]);
+
   return (
     <section className={styles.container} id={id}>
       <div className={styles.inner}>
         <h2 className={styles.header}>
-          Q{QUESTION_NUMBER}.{question}
+          Q{questionNumber + 1}.{question}
         </h2>
         {InputComponent && (
           <InputComponent
@@ -51,6 +63,7 @@ export default function Question({ formData, id }: QuestionProps) {
             name={name}
             rules={validate}
             onValidation={(result) => setValidationResult(result)}
+            inputRef={inputRef}
           />
         )}
         <Button onClick={handleClick} disabled={validationResult !== null}>
@@ -64,4 +77,5 @@ export default function Question({ formData, id }: QuestionProps) {
 type QuestionProps = {
   formData: FormField;
   id: string;
+  questionNumber: number;
 };
