@@ -102,7 +102,7 @@ export const aQuestions = {
         ],
       },
       {
-        name: "type",
+        name: "nonAlcohol",
         question: "무알콜 맥주를 드셔본적 있나요?",
         required: true,
         type: "radio",

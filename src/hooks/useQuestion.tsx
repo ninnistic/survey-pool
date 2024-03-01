@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { FormField } from "../types/questions";
 import { EscapeValidateRule } from "../types/questions";
-
-export const useQuestion = (url: string) => {
+import { Answers } from "../types/answers";
+export const useQuestion = (identifier: "common" | string) => {
+  const BASE_QUESTION_URL = "/api/question";
   const [isLoading, setIsLoading] = useState(false);
   const [questionList, setQuestionList] = useState<FormField[]>([]);
   const [escapeValidateRule, setEscapeValidateRule] =
@@ -12,7 +13,9 @@ export const useQuestion = (url: string) => {
     const fetchQuestionList = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(url, { method: "GET" });
+        const response = await fetch(`${BASE_QUESTION_URL}/${identifier}`, {
+          method: "GET",
+        });
         const initialData = await response.json();
         const forms = initialData.data.forms;
         const escapeValidate = initialData.data.escapeValidate;
@@ -24,19 +27,19 @@ export const useQuestion = (url: string) => {
     };
 
     fetchQuestionList();
-  }, [url]);
+  }, [identifier]);
 
   const submitAnswer = async (answers: FormData) => {
     try {
+      const BASE_ANSWER_URL = "/api/answers";
       setIsLoading(true);
-      const postURL = url.replace("/question/", "/answers/");
-      const response = await fetch(postURL, {
+      const response = await fetch(`${BASE_ANSWER_URL}/${identifier}`, {
         method: "POST",
         body: answers,
       });
-      const data = await response.json();
-      //TODO: type 지정하기
-      return data.data.nextTypeId;
+      const data = (await response.json()) as Answers;
+
+      return data.nextTypeId;
     } catch (error) {
       setIsLoading(false);
     }

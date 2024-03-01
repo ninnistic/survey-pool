@@ -11,16 +11,17 @@ import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
 
 export default function SurveyForm({
-  questionURL,
+  identifier,
   ...formProps
 }: SurveyFormProps) {
-  const { questionList, submitAnswer } = useQuestion(questionURL);
+  const { questionList, submitAnswer } = useQuestion(identifier);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const nextTypeId = submitAnswer(formData);
+    const nextTypeId = await submitAnswer(formData);
+    if (nextTypeId === "undfined") return;
     navigate(`/survey/${nextTypeId}`);
   };
 
@@ -69,5 +70,5 @@ function FormProgress() {
   return <ProgressBar percentage={(tab / questionCount) * 100} />;
 }
 type SurveyFormProps = {
-  questionURL: string;
+  identifier: "common" | string;
 } & ComponentProps<"form">;

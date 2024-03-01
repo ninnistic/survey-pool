@@ -28,7 +28,7 @@ export default function RadioWithInput({
     return (
       <>
         <LabeledRadioButton
-          key={index}
+          key={entry.value}
           name={name}
           value={entry.value}
           label={entry.label}
