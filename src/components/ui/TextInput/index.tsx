@@ -1,6 +1,7 @@
 import InputType from "../../../types/input";
 import { useState, useEffect } from "react";
 import useValidation from "../../../hooks/useValidation";
+import styles from "./TextInput.module.css";
 
 export default function TextInput({
   placeholder,
@@ -26,6 +27,7 @@ export default function TextInput({
         value={value}
         onChange={(event) => setValue(event.target.value)}
         ref={inputRef}
+        className={styles.input}
       />
     </>
   );

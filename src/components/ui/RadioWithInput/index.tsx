@@ -1,14 +1,18 @@
 import TextInput from "../TextInput";
 import LabeledRadioButton from "../LabeledRadioButton";
 import { useEffect, useState } from "react";
+import styles from "./RadioWithInput.module.css";
 
 import InputType from "../../../types/input";
 
 export default function RadioWithInput({
   placeholder,
   name,
+  inputRef,
+  rules,
+  onValidation,
 }: RadioWithInputProps) {
-  const [value, setValue] = useState<string | undefined>();
+  const [value, setValue] = useState<string>();
   const [inputDisplay, setInputDisplay] = useState(false);
 
   // to find initially checked entry
@@ -39,6 +43,8 @@ export default function RadioWithInput({
               ? () => setInputDisplay(true)
               : () => setInputDisplay(false)
           }
+          className={styles.input}
+          ref={inputRef}
         />
       </>
     );
