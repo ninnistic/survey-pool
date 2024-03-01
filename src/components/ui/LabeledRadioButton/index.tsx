@@ -1,4 +1,5 @@
 import { useId, ComponentProps } from "react";
+import styles from "./LabeledRadioButton.module.css";
 
 export default function LabeledRadioButton({
   name,
@@ -10,7 +11,7 @@ export default function LabeledRadioButton({
   return (
     <>
       <label htmlFor={id}>{label}</label>
-      <input type="radio" name={name} {...other} />
+      <input type="radio" name={name} {...other} className={styles.input} />
     </>
   );
 }

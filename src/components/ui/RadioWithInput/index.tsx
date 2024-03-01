@@ -1,6 +1,7 @@
 import TextInput from "../TextInput";
 import LabeledRadioButton from "../LabeledRadioButton";
 import { useEffect, useState } from "react";
+import styles from "./RadioWithInput.module.css";
 
 import InputType from "../../../types/input";
 
@@ -39,6 +40,7 @@ export default function RadioWithInput({
               ? () => setInputDisplay(true)
               : () => setInputDisplay(false)
           }
+          className={styles.input}
         />
       </>
     );
