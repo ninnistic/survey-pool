@@ -3,13 +3,13 @@ import { commonQuestions } from "../fixtures/common_question";
 import { aQuestions } from "../fixtures/a_questions";
 
 export const questionHandlers = [
-  http.get("/api/question/common", () => {
+  http.get(`api/question/common`, () => {
     return HttpResponse.json(commonQuestions);
   }),
   http.get(`api/question/:typeID`, () => {
     return HttpResponse.json(aQuestions);
   }),
-  http.post(`/api/answers/common`, () => {
+  http.post(`api/answers/common`, () => {
     return HttpResponse.json({
       status: 200,
       data: {

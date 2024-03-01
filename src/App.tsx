@@ -1,17 +1,23 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { PATH_NAME } from "./constants/route";
+import IntroPage from "./pages/IntroPage";
+import OutroPage from "./pages/OutroPage";
+import NoTargetPage from "./pages/NoTargetPage";
 import SurveyForm from "./components/SurveyForm";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 
 function App() {
-  // 어떻게 하면 순서대로 input창을 보여줄지 생각하기
   const COMMON_QUESTION_URL = "api/question/common";
   return (
-    <div className="App">
-      <Header />
-      <SurveyForm questionURL={COMMON_QUESTION_URL} />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path={PATH_NAME.INTRO} element={<IntroPage />} />
+      <Route
+        path={PATH_NAME.SURVEY}
+        element={<SurveyForm questionURL={COMMON_QUESTION_URL} />}
+      />
+      <Route path={PATH_NAME.NO_TARGET} element={<NoTargetPage />} />
+      <Route path={PATH_NAME.OUTRO} element={<OutroPage />} />
+    </Routes>
   );
 }
 
